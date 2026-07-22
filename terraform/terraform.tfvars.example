@@ -1,0 +1,33 @@
+# Copy to terraform.tfvars and fill in.
+
+ssh_user        = "ty"
+ssh_private_key = "" # set via: export TF_VAR_ssh_private_key="$(cat ~/.ssh/id_ed25519)"
+
+# Control plane -- first entry is the etcd init node. Odd count required.
+server_hosts = [
+  "192.168.68.85",  # node0
+  "192.168.68.109", # node1
+  "192.168.68.XXX", # node2
+]
+
+# Pi workers
+agent_hosts = [
+  "192.168.68.XXX",
+  "192.168.68.XXX",
+  "192.168.68.XXX",
+  "192.168.68.XXX",
+]
+
+# 32GB AI box (labeled workload=ai)
+ai_agent_host = "192.168.68.XXX"
+
+vip = "192.168.68.49"
+
+# Extra cert SANs beyond the VIP: tailscale IPs + MagicDNS names, DNS aliases
+tls_san = [
+  "node0.tail1e0a5e.ts.net",
+  "100.115.229.12",
+  # node1 / node2 tailscale entries...
+]
+
+# k3s_version = "v1.33.1+k3s1"  # pin if you want reproducible rebuilds
