@@ -1,0 +1,42 @@
+kind: "DatadogAgent"
+apiVersion: "datadoghq.com/v2alpha1"
+metadata:
+  name: "datadog"
+  namespace: "datadog"
+spec:
+  global:
+    clusterName: "omega"
+    site: "us5.datadoghq.com"
+    credentials:
+      apiSecret:
+        secretName: "datadog-secret"
+        keyName: "api-key"
+  features:
+    clusterChecks:
+      enabled: true
+    orchestratorExplorer:
+      enabled: true
+    apm:
+      instrumentation:
+        enabled: true
+        targets:
+          - name: "default-target"
+            ddTraceVersions:
+              java: "1"
+              python: "4"
+              js: "5"
+              php: "1"
+              dotnet: "3"
+              ruby: "2"
+    logCollection:
+      enabled: true
+      containerCollectAll: true
+    cspm:
+      enabled: true
+    sbom:
+      enabled: true
+      containerImage:
+        enabled: true
+      host:
+        enabled: true
+
