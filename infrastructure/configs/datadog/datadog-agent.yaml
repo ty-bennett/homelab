@@ -1,3 +1,13 @@
+# Requires the datadog-operator CRDs (see ../../controllers/datadog-operator)
+# and a `datadog-secret` Secret with key `api-key` in this namespace before
+# this reconciles. That secret isn't in git yet -- create it manually for now:
+#
+#   kubectl create secret generic datadog-secret \
+#     --from-literal=api-key=<your Datadog API key> \
+#     --namespace datadog
+#
+# TODO: move this to a SOPS-encrypted (or sealed-secrets) manifest so it's
+# reproducible from git like everything else.
 kind: "DatadogAgent"
 apiVersion: "datadoghq.com/v2alpha1"
 metadata:
@@ -39,4 +49,3 @@ spec:
         enabled: true
       host:
         enabled: true
-

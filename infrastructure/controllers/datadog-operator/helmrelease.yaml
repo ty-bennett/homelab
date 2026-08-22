@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: datadog-operator
+  namespace: datadog
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: datadog-operator
+      # Track the 2.x line; bump the range (or pin an exact version) when
+      # you're ready to take a major upgrade.
+      version: ">=2.0.0 <3.0.0"
+      sourceRef:
+        kind: HelmRepository
+        name: datadog
+        namespace: datadog
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
