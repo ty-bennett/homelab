@@ -1,0 +1,17 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: tybennett-blog
+  namespace: flux-system
+spec:
+  interval: 30m0s
+  path: ./blog/kustomization.yaml
+  prune: true
+  retryInterval: 2m0s
+  sourceRef:
+    kind: GitRepository
+    name: tybennett-blog
+  targetNamespace: public
+  timeout: 2m0s
+  wait: true
