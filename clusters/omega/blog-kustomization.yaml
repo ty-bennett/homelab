@@ -12,6 +12,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: tybennett-blog
+    namespace: public
   targetNamespace: public
   timeout: 2m0s
   wait: true
