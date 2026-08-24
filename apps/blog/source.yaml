@@ -1,11 +1,10 @@
----
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: tybennett-blog
-  namespace: public 
+  name: blog
+  namespace: flux-system
 spec:
-  interval: 1m0s
+  interval: 1m
   ref:
     branch: master
   url: https://github.com/ty-bennett/blog
