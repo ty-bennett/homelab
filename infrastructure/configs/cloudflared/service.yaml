@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: cloudflare-service
+  namespace: cloudflare
 spec:
   type: ClusterIP  # Can be omitted as it is the default
   selector:
