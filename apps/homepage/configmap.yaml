@@ -18,18 +18,18 @@ data:
   bookmarks.yaml: |
     - Developer:
         - Github:
-            - abbr: GH
+            - abbr: Github
               href: https://github.com/ty-bennett
   services.yaml: |
-    - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
+    - School:
+        - Blackboard:
+            href: https://blackboard.sc.edu/
+            description: Blackboard homepage 
 
-    - My Second Group:
-        - My Second Service:
+    - Projects:
+        - :
             href: http://localhost/
-            description: Homepage is the best
+            description: Open work websites 
 
     - My Third Group:
         - My Third Service:
