@@ -3,10 +3,24 @@ kind: Kustomization
 resources:
   - cluster-role.yaml
   - cluster-role-binding.yaml
-  - configmap.yaml
   - deployment.yaml
   - ingress.yaml
   - secret.yaml
   - service.yaml
   - svc-acct.yaml
   - namespace.yaml
+configMapGenerator:
+  - name: homepage
+    namespace: homepage
+    options:
+      labels:
+        app.kubernetes.io/name: homepage
+    files:
+      - config/kubernetes.yaml
+      - config/settings.yaml
+      - config/bookmarks.yaml
+      - config/services.yaml
+      - config/widgets.yaml
+      - config/docker.yaml
+      - config/custom.css
+      - config/custom.js

@@ -1,0 +1,31 @@
+- greeting:
+    text_size: xl
+    text: Welcome back, Ty
+- datetime:
+    text_size: md
+    format:
+      dateStyle: long
+      timeStyle: short
+      hour12: true
+- kubernetes:
+    cluster:
+      show: true
+      cpu: true
+      memory: true
+      showLabel: true
+      label: "cluster"
+    nodes:
+      show: true
+      cpu: true
+      memory: true
+      showLabel: true
+- search:
+    provider: duckduckgo
+    target: _blank
+# Needs real coordinates or the widget errors out
+# - openmeteo:
+#     label: Current
+#     latitude: 0.0
+#     longitude: 0.0
+#     units: imperial
+#     cache: 5

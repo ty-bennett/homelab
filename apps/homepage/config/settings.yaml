@@ -1,0 +1,28 @@
+title: Ty's Homelab
+theme: dark
+color: slate
+headerStyle: clean
+statusStyle: dot
+useEqualHeights: true
+cardBlur: md
+background:
+  image: https://images.unsplash.com/photo-1502790671504-542ad42d5189?w=2560
+  blur: sm
+  brightness: 50
+layout:
+  Daily:
+    tab: Home
+    style: row
+    columns: 4
+  School:
+    tab: Home
+    style: row
+    columns: 4
+  Apps:
+    tab: Homelab
+    style: row
+    columns: 3
+  Infrastructure:
+    tab: Homelab
+    style: row
+    columns: 3
