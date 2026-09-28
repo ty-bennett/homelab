@@ -24,3 +24,4 @@ configMapGenerator:
       - config/docker.yaml
       - config/custom.css
       - config/custom.js
+      - config/proxmox.yaml
