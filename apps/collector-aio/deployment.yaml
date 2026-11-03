@@ -46,14 +46,22 @@ spec:
               drop: [ALL]
           readinessProbe:
             exec:
-              command: [python, server.py, --check-health, --ready]
+              command: [python, -S, server.py, --check-health, --ready]
             initialDelaySeconds: 10
             periodSeconds: 10
+            timeoutSeconds: 10
           livenessProbe:
             exec:
-              command: [python, server.py, --check-health]
+              command: [python, -S, server.py, --check-health]
             initialDelaySeconds: 30
             periodSeconds: 15
+            timeoutSeconds: 10
+          startupProbe:
+            exec:
+              command: [python, -S, server.py, --check-health]
+            periodSeconds: 5
+            timeoutSeconds: 10
+            failureThreshold: 24
           resources:
             requests:
               cpu: 50m
