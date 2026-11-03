@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         app: collector-aio
+        admission.datadoghq.com/enabled: "false"
     spec:
       automountServiceAccountToken: false
       imagePullSecrets:
