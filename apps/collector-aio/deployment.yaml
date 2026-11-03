@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: collector-aio
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: collector-aio
+  template:
+    metadata:
+      labels:
+        app: collector-aio
+    spec:
+      automountServiceAccountToken: false
+      imagePullSecrets:
+        - name: collector-registry
+      terminationGracePeriodSeconds: 30
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: collector
+          image: collector-aio
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: COLLECTOR_DATA_DIR
+              value: /data
+            - name: COLLECTOR_DISCORD_SETTINGS
+              value: /config/discord_settings.json
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: collector-secrets
+                  key: DISCORD_BOT_TOKEN
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: [ALL]
+          readinessProbe:
+            exec:
+              command: [python, server.py, --check-health, --ready]
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            exec:
+              command: [python, server.py, --check-health]
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests:
+              cpu: 50m
+              memory: 96Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: data
+              mountPath: /data
+            - name: settings
+              mountPath: /config
+              readOnly: true
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: collector-data
+        - name: settings
+          configMap:
+            name: collector-settings
+        - name: tmp
+          emptyDir: {}

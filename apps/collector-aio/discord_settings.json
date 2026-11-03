@@ -1,0 +1,10 @@
+{
+  "listen_channel_ids": ["1567298960064913631"],
+  "status_channel_id": "1567299011923415232",
+  "owner_user_id": "",
+  "mode": "notify",
+  "require_stock_words": true,
+  "allow_cart_actions": false,
+  "authorized_browser_stores": [],
+  "checkout_timeout_seconds": 600
+}

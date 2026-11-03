@@ -1,0 +1,15 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: collector-aio
+resources:
+  - namespace.yaml
+  - deployment.yaml
+  - storage.yaml
+configMapGenerator:
+  - name: collector-settings
+    files:
+      - discord_settings.json
+images:
+  - name: collector-aio
+    newName: ghcr.io/ty-bennett/collector-aio
+    digest: sha256:94dbf490d46204945239e3ff66ecbd29477812b5f33fcbbb531f0c808e6719ab
