@@ -30,11 +30,21 @@ spec:
         - name: collector
           image: collector-aio
           imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
           env:
             - name: COLLECTOR_DATA_DIR
               value: /data
             - name: COLLECTOR_DISCORD_SETTINGS
               value: /config/discord_settings.json
+            - name: COLLECTOR_WEB_ENABLED
+              value: "1"
+            - name: COLLECTOR_DASHBOARD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: collector-dashboard
+                  key: password
             - name: DISCORD_BOT_TOKEN
               valueFrom:
                 secretKeyRef:
