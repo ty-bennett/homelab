@@ -13,4 +13,4 @@ configMapGenerator:
 images:
   - name: collector-aio
     newName: ghcr.io/ty-bennett/collector-aio
-    digest: sha256:93c8dde30c9aa8f16be4ba3315e3eb58085ef1de8c86724e7c0f6098bd964357
+    digest: sha256:a5ea09b7f247f6e1f58e775cd0ba88d5a61fa2d2abbfe0c05b898782da3bb592
