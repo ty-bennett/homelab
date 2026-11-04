@@ -50,6 +50,12 @@ spec:
                 secretKeyRef:
                   name: collector-secrets
                   key: DISCORD_BOT_TOKEN
+            - name: BUJUS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: collector-secrets
+                  key: BUJUS_API_KEY
+                  optional: true
           securityContext:
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
